@@ -3,10 +3,13 @@ MAINTAINER Robert Shaw <robbynshaw@gmail.com>
 
 RUN apk add --update\
     weechat\
+    weechat-python\
+    weechat-perl\
     python\
     bash\
     ncurses\
     screen\
+    mosh-server\
     && rm -rf /var/cache/apk/*
 
 ENV LANG C.UTF-8
@@ -27,7 +30,8 @@ VOLUME /weechat/.weechat
 
 COPY startup.sh /usr/local/bin/
 
-EXPOSE 9001
+#      chat mosh
+EXPOSE 9001 60001/udp
 
 WORKDIR $HOME
 
